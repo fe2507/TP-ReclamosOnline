@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item
+        android:id="@+id/mnuNuevoReclamo"
+        android:title="@string/optNuevoReclamo"
+        app:showAsAction="never"/>
+
+    <item
+        android:id="@+id/mnuListareclamo"
+        android:title="@string/optListaReclamos"
+        app:showAsAction="never"/>
+    <item
+        android:id="@+id/mnuMapaReclamos"
+        android:title="@string/optMapaReclamos"
+        app:showAsAction="never"/>
+</menu>

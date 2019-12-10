@@ -1,0 +1,6 @@
+<resources>
+    <string name="app_name">TP-ReclamosOnline</string>
+    <string name="optMapaReclamos">Mapa de reclamos</string>
+    <string name="optListaReclamos">Lista de reclamos</string>
+    <string name="optNuevoReclamo">Nuevo Reclamo</string>
+</resources>
