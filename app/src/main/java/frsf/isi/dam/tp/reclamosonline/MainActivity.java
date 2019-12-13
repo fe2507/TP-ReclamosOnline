@@ -3,6 +3,7 @@ package frsf.isi.dam.tp.reclamosonline;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -28,15 +29,18 @@ public class MainActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.mnuListareclamo:
-                // User chose the "Settings" item, show the app settings UI...
+                Intent i1 = new Intent(MainActivity.this, ListaReclamosActivity.class);
+                startActivity(i1);
                 return true;
 
             case R.id.mnuNuevoReclamo:
-                // User chose the "Settings" item, show the app settings UI...
+                Intent i = new Intent(MainActivity.this,FormReclamoActivity.class);
+                startActivity(i);
                 return true;
 
             case R.id.mnuMapaReclamos:
-                // User chose the "Settings" item, show the app settings UI...
+                Intent i2 = new Intent(MainActivity.this,MapsActivity.class);
+                startActivity(i2);
                 return true;
 
             default:

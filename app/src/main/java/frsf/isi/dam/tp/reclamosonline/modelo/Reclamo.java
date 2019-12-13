@@ -1,23 +1,35 @@
 package frsf.isi.dam.tp.reclamosonline.modelo;
 
+import java.io.Serializable;
 import java.util.Objects;
 
-public class Reclamo {
+public class Reclamo implements Serializable {
+
     private Integer id;
     private String nombre;
-    private float latitud;
-    private float longitud;
+    private double latitud;
+    private double longitud;
     private Estado estado;
+    private TipoReclamo tipo;
 
     public Reclamo() {
     }
 
-    public Reclamo(Integer id, String nombre, float latitud, float longitud, Estado estado) {
+    public Reclamo(Integer id, String nombre, String estado, String tipo, Double latitud, Double longitud) {
         this.id = id;
         this.nombre = nombre;
         this.latitud = latitud;
         this.longitud = longitud;
-        this.estado = estado;
+        this.estado = Estado.valueOf(estado);
+        this.tipo= TipoReclamo.valueOf(tipo);
+    }
+
+    public TipoReclamo getTipo() {
+        return tipo;
+    }
+
+    public void setTipo(TipoReclamo tipo) {
+        this.tipo = tipo;
     }
 
     public Integer getId() {
@@ -36,19 +48,19 @@ public class Reclamo {
         this.nombre = nombre;
     }
 
-    public float getLatitud() {
+    public double getLatitud() {
         return latitud;
     }
 
-    public void setLatitud(float latitud) {
+    public void setLatitud(double latitud) {
         this.latitud = latitud;
     }
 
-    public float getLongitud() {
+    public double getLongitud() {
         return longitud;
     }
 
-    public void setLongitud(float longitud) {
+    public void setLongitud(double longitud) {
         this.longitud = longitud;
     }
 
@@ -71,5 +83,17 @@ public class Reclamo {
     @Override
     public int hashCode() {
         return Objects.hash(id);
+    }
+
+    @Override
+    public String toString() {
+        return "Reclamo{" +
+                "id=" + id +
+                ", nombre='" + nombre + '\'' +
+                ", latitud=" + latitud +
+                ", longitud=" + longitud +
+                ", estado=" + estado +
+                ", tipo=" + tipo +
+                '}';
     }
 }

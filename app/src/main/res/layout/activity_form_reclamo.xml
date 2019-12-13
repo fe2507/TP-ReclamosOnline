@@ -6,6 +6,14 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     tools:context=".FormReclamoActivity">
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/my_toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="?attr/colorPrimary"
+        android:elevation="4dp"
+        android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
+        app:popupTheme="@style/ThemeOverlay.AppCompat.Light"/>
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -36,9 +44,11 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal">
         <TextView
+            android:text="- seleccione las coordenadas -"
             android:id="@+id/coordSelec"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
             ></TextView>
         <Button
             android:id="@+id/btnBuscarCoord"
@@ -48,13 +58,13 @@
     </LinearLayout>
     <Button
         android:id="@+id/btnGuardar"
-        android:layout_width="wrap_content"
-        android:layout_height="match_parent"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:text="Guardar"></Button>
     <Button
         android:id="@+id/btnCancelar"
-        android:layout_width="wrap_content"
-        android:layout_height="match_parent"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:text="Cancelar"></Button>
 
 

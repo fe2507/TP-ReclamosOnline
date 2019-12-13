@@ -3,4 +3,5 @@
     <string name="optMapaReclamos">Mapa de reclamos</string>
     <string name="optListaReclamos">Lista de reclamos</string>
     <string name="optNuevoReclamo">Nuevo Reclamo</string>
+    <string name="title_activity_maps">Map</string>
 </resources>
