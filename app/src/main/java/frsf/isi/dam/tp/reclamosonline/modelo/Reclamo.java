@@ -6,7 +6,9 @@ import java.util.Objects;
 public class Reclamo implements Serializable {
 
     private Integer id;
+    private Integer telefono;
     private String nombre;
+    private String correoelectronico;
     private double latitud;
     private double longitud;
     private Estado estado;
@@ -40,6 +42,14 @@ public class Reclamo implements Serializable {
         this.id = id;
     }
 
+    public Integer getTelefono() {
+        return telefono;
+    }
+
+    public void setTelefono(Integer telefono) {
+        this.telefono = telefono;
+    }
+
     public String getNombre() {
         return nombre;
     }
@@ -47,6 +57,15 @@ public class Reclamo implements Serializable {
     public void setNombre(String nombre) {
         this.nombre = nombre;
     }
+
+    public String getCorreoelectronico() {
+        return correoelectronico;
+    }
+
+    public void setCorreoelectronico(String correoelectronico) {
+        this.correoelectronico = correoelectronico;
+    }
+
 
     public double getLatitud() {
         return latitud;

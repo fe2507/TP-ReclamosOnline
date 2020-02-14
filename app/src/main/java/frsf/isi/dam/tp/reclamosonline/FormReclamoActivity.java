@@ -32,6 +32,8 @@ public class FormReclamoActivity extends AppCompatActivity {
     public static final int BUSCAR_COORDENADAS = 99;
     private Reclamo reclamo;
     private EditText tituloEdit;
+    private EditText telefonoEdit;
+    private EditText correoEdit;
     private Spinner tipoReclamoCmb;
     private TextView coordenadasTv;
     private Button buscarCoordBtn;
@@ -49,6 +51,8 @@ public class FormReclamoActivity extends AppCompatActivity {
         tipoReclamoCmb = (Spinner) findViewById(R.id.recTipo);
         tipoReclamoCmb.setAdapter(tipoReclamoAdapter);
         tituloEdit = (EditText) findViewById(R.id.recDesc);
+        telefonoEdit = (EditText) findViewById(R.id.recTel);
+        correoEdit = (EditText) findViewById(R.id.recCorreo);
         coordenadasTv = (TextView) findViewById(R.id.coordSelec);
         if (this.getIntent() != null) {
             reclamo = (Reclamo) this.getIntent().getSerializableExtra("reclamo");
@@ -69,6 +73,9 @@ public class FormReclamoActivity extends AppCompatActivity {
                 Intent i1 = new Intent(FormReclamoActivity.this,MapsActivity.class);
                 // iniciar la actividad del mapa para obtener un resultado
                 // y pasar como codigo de request el valor de BUSCAR_COORDENADAS
+                startActivityForResult(i1,BUSCAR_COORDENADAS);
+
+
             }
         });
 
@@ -76,6 +83,9 @@ public class FormReclamoActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 reclamo.setNombre(tituloEdit.getText().toString());
+                reclamo.setTelefono(Integer.parseInt(telefonoEdit.getText().toString()));
+                reclamo.setCorreoelectronico(correoEdit.getText().toString());
+
                 if(tipoReclamoCmb.getSelectedItem()!=null){
                     reclamo.setTipo(TipoReclamo.valueOf(tipoReclamoCmb.getSelectedItem().toString()));
                 }
@@ -111,6 +121,9 @@ public class FormReclamoActivity extends AppCompatActivity {
         if(requestCode==BUSCAR_COORDENADAS && resultCode == RESULT_OK){
             // obtener de los extras de data, el parcelable con las coordenadas
             // y asignarlo a un objeto LatLng
+            LatLng objLatLng=getIntent().getExtras().getParcelable("Latlng");
+            reclamo.setLatitud(objLatLng.latitude);
+            reclamo.setLongitud(objLatLng.longitude);
             // luego al reclamo setearle la longitud y latitud con
             // (objeto LatLNG).latitude y (objeto LatLNG).longitude
             // finalmente setear las coordendas en el coordenadasTv
@@ -125,6 +138,8 @@ public class FormReclamoActivity extends AppCompatActivity {
             ContentValues cv = new ContentValues();
             if(reclamo!=null){
                 cv.put("nombre",reclamo.getNombre());
+                cv.put("telefono",reclamo.getTelefono().toString());
+                cv.put("correo",reclamo.getCorreoelectronico());
                 cv.put("estado",reclamo.getEstado().toString());
                 cv.put("tipo",reclamo.getTipo().toString());
                 cv.put("latitud",reclamo.getLatitud());

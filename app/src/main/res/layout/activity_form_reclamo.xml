@@ -24,6 +24,27 @@
         android:layout_height="wrap_content"
         android:id="@+id/recDesc"
         ></EditText>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Telefono"></TextView>
+
+    <EditText
+        android:id="@+id/recTel"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"></EditText>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Correo Electrónico"></TextView>
+
+    <EditText
+        android:id="@+id/recCorreo"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"></EditText>
+
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

@@ -19,9 +19,11 @@ import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.LatLngBounds;
 import com.google.android.gms.maps.model.MarkerOptions;
+import com.google.android.gms.maps.model.PolylineOptions;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -35,6 +37,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     private Reclamo reclamoActual;
     private List<Reclamo> listaReclamos = new ArrayList<>();
     private static final Integer CARGAR_LISTA_RECLAMOS = 100;
+    private float hue=0.0f;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -94,16 +97,26 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             if(r.getLongitud()<minO) minO = r.getLongitud();
             if(r.getLongitud()>maxE) maxE= r.getLongitud();
             LatLng centro = new LatLng(r.getLatitud(),r.getLongitud());
+            switch(r.getTipo()){
+                case BACHE:hue=240.0F;
+                case RESIDUOS:hue=120.0F;
+                case TRANSITO:hue=30.0F;
+                case TRANSPORTE:hue=0.0F;
+                case ILUMNINACION:hue=60.0F;
+                default:hue=90.0F;
+                    break;
+            }
             this.mMap.addMarker(new MarkerOptions()
-                    .position(centro)
-                    .title(r.getNombre())
+                    .position(centro).icon(BitmapDescriptorFactory.defaultMarker(hue)).title(r.getNombre())
                     .snippet(r.getNombre()+ ":"+ r.getEstado()));
+            this.mMap.addPolyline((new PolylineOptions()).add());
         }
         Log.d("TP_DEBUG", "limites: " + maxN+" _ "+maxE+" _ "+minS+" _ "+minO+" _ ");
         LatLng norEste= new LatLng(maxN,maxE);
         LatLng surOeste= new LatLng(minS,minO);
         LatLngBounds limites = new LatLngBounds(surOeste,norEste);
         this.mMap.moveCamera(CameraUpdateFactory.newLatLngBounds(limites,11));
+
     }
 
 
@@ -138,9 +151,17 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
     private void mostrarReclamo(){
         LatLng centro = new LatLng(this.reclamoActual.getLatitud(),this.reclamoActual.getLongitud());
+        switch(reclamoActual.getTipo()){
+            case BACHE:hue=240.0F;
+            case RESIDUOS:hue=120.0F;
+            case TRANSITO:hue=30.0F;
+            case TRANSPORTE:hue=0.0F;
+            case ILUMNINACION:hue=60.0F;
+            default:hue=90.0F;
+            break;
+        }
         this.mMap.addMarker(new MarkerOptions()
-                .position(centro)
-                .title(this.reclamoActual.getNombre())
+                .position(centro).icon(BitmapDescriptorFactory.defaultMarker(hue)).title(this.reclamoActual.getNombre())
                 .snippet(this.reclamoActual.getNombre()+ ":"+ this.reclamoActual.getEstado()));
         this.mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(centro,11));
     }
@@ -153,7 +174,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         intRes.putExtra("coordenadas",latLng);
         setResult(RESULT_OK,intRes);
         Log.d("TP_DEBUG","finisih: "+ RESULT_OK);
-        // finishActivity(FormReclamoActivity.BUSCAR_COORDENADAS);
+        //finishActivity(FormReclamoActivity.BUSCAR_COORDENADAS);
         finish();
     }
 

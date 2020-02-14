@@ -16,7 +16,7 @@ public class MiDatabaseHelper extends SQLiteOpenHelper {
                     " latitud REAL," +
                     " longitud REAL)";
 
-    public static final String SQL_SELECT= "SELECT _id,nombre, estado, tipo, latitud, longitud FROM RECLAMOS ";
+    public static final String SQL_SELECT= "SELECT _id,nombre, telefono, correoelectronico, estado, tipo, latitud, longitud FROM RECLAMOS ";
     // If you change the database schema, you must increment the database version.
     public static final int DATABASE_VERSION = 1;
     public static final String DATABASE_NAME = "reclamos.db";
@@ -31,7 +31,7 @@ public class MiDatabaseHelper extends SQLiteOpenHelper {
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         db.execSQL("ALTER TABLE RECLAMOS ADD TELEFONO INTEGER");
         db.execSQL("ALTER TABLE RECLAMOS ADD CORREO_ELECTRONICO TEXT");
-    }
+            }
     public void onDowngrade(SQLiteDatabase db, int oldVersion, int newVersion) {
     }
 
